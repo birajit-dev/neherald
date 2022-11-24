@@ -1,0 +1,208 @@
+<div class="container">
+
+
+  <div class="row" data-aos="fade-up">
+    <div class="col-xl-8 stretch-card grid-margin">
+      {{#each topnews}}
+      <div class="position-relative" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+        <img  src="{{post_image}}" alt="{{post_name}}" class="img-fluid" />
+        <div class="banner-content">
+          <div class="overlay">
+          <!--  <div class="badge badge-danger fs-12 font-weight-bold mb-3">
+              Top News
+            </div>-->
+            <h1 class="mb-0"></h1>
+            <h1 class="mb-2" style="font-family: 'Droid Serif';background:gray;">
+              {{post_name}}
+            </h1>
+            <div class="fs-12">
+              <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif';font-size:14px;background:red;">{{post_category}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+     <div class="col-xl-4 stretch-card grid-margin">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+              <h2>Latest news</h2>
+{{#each latestnews}}
+                      <a href="/{{post_category}}/{{post_url}}" class="text-dark">
+                        <div class="row border-bottom" style="padding-top:10px;">
+                          <div class="col-3" style="
+    padding-right: 10px;
+    width:35%;
+">
+                            <img src="{{post_image}}" class="img-fluid shadow-1-strong rounded latest-news-home" alt="Los Angeles Skyscrapers" style="width: 100%;" />
+                          </div>
+
+                          <div class="col-9" style="
+    padding: 0px;
+    margin: 0px;
+    width:65%;
+">
+                            <h5 class="pe-3 news-a cursor-pointer" style="color: white;font-family:'Droid Serif'">{{substr "40" post_name}}</h5>
+                              <p style="color: white;margin-top:-8px;">{{substr "25" update_date}}</p>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                      {{/each}}
+          
+        </div>
+      </div>
+    </div> 
+
+  </div>
+
+
+
+  <div class="row" data-aos="fade-up">
+    <div class="col-lg-9 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/tripura'">
+            Tripura News (View All)
+          </div>
+          {{#each tripuranews}}
+          <div class="row cursor-pointer" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+            <div class="col-sm-4 grid-margin">
+              <div class="position-relative">
+                <div class="rotate-img">
+                  <img src="{{post_image}}" alt="thumb" class="img-fluid" />
+                </div>
+                <div class="badge-positioned">
+                  <span class="badge badge-danger font-weight-bold">Tripura News</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8  grid-margin">
+              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+                {{post_name}}
+              </h2>
+              <div class="fs-13 mb-2">
+                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
+              </div>
+              <p class="mb-0 a-black">
+                {{{meta_description}}}
+              </p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body advertisements">
+          <img alt="ads" src="https://dummyimage.com/300x300/c2c0c2/2e2e33.jpg&text=ads+go+here" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  {{!-- National News --}}
+    <div class="row" data-aos="fade-up">
+    <div class="col-lg-9 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/national'">
+            National News (View All)
+          </div>
+          {{#each nationalnews}}
+          <div class="row cursor-pointer" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+            <div class="col-sm-4 grid-margin">
+              <div class="position-relative">
+                <div class="rotate-img">
+                  <img src="{{post_image}}" alt="thumb" class="img-fluid" />
+                </div>
+                <div class="badge-positioned">
+                  <span class="badge badge-danger font-weight-bold">{{post_category}} News</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8  grid-margin">
+              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+                {{post_name}}
+              </h2>
+              <div class="fs-13 mb-2">
+                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
+              </div>
+              <p class="mb-0 a-black">
+                {{{meta_description}}}
+              </p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body advertisements">
+          <img alt="ads" src="https://dummyimage.com/300x300/c2c0c2/2e2e33.jpg&text=ads+go+here" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- End of National News --}}
+
+
+
+
+    {{!-- National News --}}
+    <div class="row" data-aos="fade-up">
+    <div class="col-lg-9 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/sports'">
+            Sports News (View All)
+          </div>
+          {{#each sportnews}}
+          <div class="row cursor-pointer" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+            <div class="col-sm-4 grid-margin">
+              <div class="position-relative">
+                <div class="rotate-img">
+                  <img src="{{post_image}}" alt="thumb" class="img-fluid" />
+                </div>
+                <div class="badge-positioned">
+                  <span class="badge badge-danger font-weight-bold">{{post_category}} News</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8  grid-margin">
+              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+                {{post_name}}
+              </h2>
+              <div class="fs-13 mb-2">
+                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
+              </div>
+              <p class="mb-0 a-black">
+                {{{meta_description}}}
+              </p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 stretch-card grid-margin">
+      <div class="card">
+        <div class="card-body advertisements">
+          <img alt="ads" src="https://dummyimage.com/300x300/c2c0c2/2e2e33.jpg&text=ads+go+here" />
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- End of National News --}}
+
+    {{!-- End of container --}}
+    </div>

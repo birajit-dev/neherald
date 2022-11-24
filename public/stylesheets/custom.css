@@ -1,0 +1,17 @@
+.singlenews{
+    font-family: 'Droid Serif';
+    font-size: 22px;
+}
+.custom-heading{
+    text-align: left !important;
+    font-weight: 600;
+    font-family: 'Droid Serif';
+}
+.author{
+    font-weight: 600;
+    font-family: 'Droid Serif';
+    font-size: 14px;
+}
+
+
+
