@@ -513,6 +513,11 @@ const allnews = require('../model/allnews');
             
         });
     }
+
+
+
+    
+       
         
 
         
