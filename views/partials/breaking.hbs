@@ -1,0 +1,24 @@
+  <div class="flash-news-banner">
+          <div class="container">
+            <div class="d-lg-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center mqstyle">
+                <span class="badge badge-dark me-3" style="background-color: red;">Breaking News</span>
+                 <p class="mb-0">
+     <marquee >
+<p style="font-family: 'Droid Serif';">
+    {{#each bnews}}
+        {{ breaking_title }}|
+    {{/each}} 
+</p>
+
+</marquee>
+    </p>
+               
+              </div>
+              <div class="d-flex">
+                 <span class="text-danger me-2">{{dateFormat now "dddd, MMM Do YYYY"}}  </span>                            
+                <span class="text-danger">32°C,Agartala</span>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -4,6 +4,7 @@ require('../model/database');
 const allNews = require('../model/allnews');
 const allPages = require('../model/allpage');
 const adminData =  require('../model/login');
+const breakingNews = require('../model/breakingnews');
 const Ibns = require('../model/ibns');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
@@ -15,6 +16,10 @@ const { assert } = require('console');
 const fetch = require('node-fetch');
 const _ = require('lodash');
 const allnews = require('../model/allnews');
+const { title } = require('process');
+const breakingnews = require('../model/breakingnews');
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
 
 
 
@@ -32,17 +37,38 @@ const allnews = require('../model/allnews');
         timeZone: 'Asia/Calcutta'
       });
 
-    var storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-        cb(null, './public/uploads/')
-        },
-        filename: function (req, file, cb) {
-        cb(null, ranDom +file.originalname)
-        }
-    })
+    // var storage = multer.diskStorage({
+    //     destination: function (req, file, cb) {
+    //     cb(null, './public/uploads/')
+    //     },
+    //     filename: function (req, file, cb) {
+    //     cb(null, ranDom +file.originalname)
+    //     }
+    // })
     
-    var upload = multer({ 
-        storage: storage }).single('myFile');
+    // var upload = multer({ 
+    //     storage: storage }).single('myFile');
+
+
+    const spacesEndpoint = new aws.Endpoint('sfo3.digitaloceanspaces.com');
+    const s3 = new aws.S3({
+        endpoint: spacesEndpoint,
+        accessKeyId:'DO00YCW72DZT2Q6WMMFF',
+        secretAccessKey:'SQyXsV6kK6GsQHEUlFTCjfQ2LyKmSnAiPqAn4MAmMrc'
+    });
+    
+    // Change bucket property to your Space name
+    const upload = multer({
+        storage: multerS3({
+        s3: s3,
+        bucket: 'northeastherald',
+        acl: 'public-read',
+        key: function (request, file, cb) {
+            console.log(file);
+            cb(null,'news/'+ranDom + file.originalname);
+        }
+        })
+    }).single('myFile', 1);
       
 
     exports.adminLogin = async(req, res) => {
@@ -90,7 +116,7 @@ const allnews = require('../model/allnews');
                 res.redirect('/admin/user/login');
             }
             else{
-                const dashAllNews = await allNews.find().sort({news_id:-1}).lean();
+                const dashAllNews = await allNews.find().sort({update_date:-1}).lean();
                 res.render('admin/dashboard',{
                     title:'Northeast Herald',
                     layout: '',
@@ -122,7 +148,7 @@ const allnews = require('../model/allnews');
                 //console.log(req.file);
                 const filex = req.file.originalname;
                 const nFile = ranDom +filex;
-                const urlp = "";
+                const urlp = "https://northeastherald.sfo3.digitaloceanspaces.com/news/";
                 const aFile = urlp +nFile;
 
                 const {name, url, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author } = req.body;
@@ -134,7 +160,7 @@ const allnews = require('../model/allnews');
                     post_keyword:keyword,
                     meta_description:description,
                     post_category:category,
-                    post_image:'/uploads/'+ aFile,
+                    post_image: aFile,
                     meta_tags:tags,
                     post_topic:topics,
                     post_editor:editor,
@@ -178,7 +204,6 @@ const allnews = require('../model/allnews');
                 post_editor:editor,
                 ne_insight:insight,
                 author:author,
-                update_date:newDate
             }, function(err, data) {
             if(err){
                 res.send('Something Went Wrong');
@@ -229,7 +254,7 @@ const allnews = require('../model/allnews');
     }
 
     exports.editPage = async(req, res)=>{
-        adminSession=req.session;
+            adminSession=req.session;
             if(!adminSession.userid){
                 res.redirect('/admin/user/login');
             }
@@ -263,276 +288,97 @@ const allnews = require('../model/allnews');
             });
     }
 
-    exports.ibns = async(req, res, next) =>{
-        let url = "https://www.indiablooms.com/news/feeds.json";
-        const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
-
-
-    let settings = { method: "Get" };
-    fetch(url, settings)
-    .then(res => res.json())
-    .then((json) => {
-            var sports = json.news.sports;
-            var news = json.news.news;		
-	        var finance	= json.news.finance;	
-	        var showbiz	= json.news.showbiz;	
-	        var life = json.news.life;		
-	        var world = json.news.world;		
-	        var health	= json.news.health;
-                
-                if(sports !=null){  
-                    for(var i=0;i<sports.length;i++){     
-                        if(sports[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === sports[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = sports[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: sports[i].title,
-                                post_url: iurl,
-                                post_summary: sports[i].description,
-                                post_content:sports[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, sports news',
-                                meta_description:sports[i].description,
-                                post_category:'sports',
-                                post_image:sports[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:sports[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                } 
-
-                if(news !=null){  
-                    for(var i=0;i<news.length;i++){     
-                        if(news[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === news[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = news[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: news[i].title,
-                                post_url: iurl,
-                                post_summary: news[i].description,
-                                post_content:news[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, news news',
-                                meta_description:news[i].description,
-                                post_category:'national',
-                                post_image:news[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:news[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-
-                if(finance !=null){  
-                    for(var i=0;i<finance.length;i++){     
-                        if(finance[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === finance[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = finance[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: finance[i].title,
-                                post_url: iurl,
-                                post_summary: finance[i].description,
-                                post_content:finance[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, finance news',
-                                meta_description:finance[i].description,
-                                post_category:'finance',
-                                post_image:finance[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:finance[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-
-                if(showbiz !=null){  
-                    for(var i=0;i<showbiz.length;i++){     
-                        if(showbiz[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === showbiz[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = showbiz[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: showbiz[i].title,
-                                post_url: iurl,
-                                post_summary: showbiz[i].description,
-                                post_content:showbiz[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, showbiz news',
-                                meta_description:showbiz[i].description,
-                                post_category:'showbiz',
-                                post_image:showbiz[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:showbiz[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-
-                if(life !=null){  
-                    for(var i=0;i<life.length;i++){     
-                        if(life[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === life[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = life[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: life[i].title,
-                                post_url: iurl,
-                                post_summary: life[i].description,
-                                post_content:life[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, life news',
-                                meta_description:life[i].description,
-                                post_category:'life',
-                                post_image:life[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:life[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-
-                if(world !=null){  
-                    for(var i=0;i<world.length;i++){     
-                        if(world[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === world[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = world[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: world[i].title,
-                                post_url: iurl,
-                                post_summary: world[i].description,
-                                post_content:world[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, world news',
-                                meta_description:world[i].description,
-                                post_category:'world',
-                                post_image:world[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:world[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-
-                if(health !=null){  
-                    for(var i=0;i<health.length;i++){     
-                        if(health[i].content.length>10){  
-                            var selected=dashAllNews.filter(it =>
-                            it.ibns_id === health[i].id 
-                            );        
-                            if(selected != null && selected.length>0){
-                            }
-                            else{
-                                var iurl = health[i].title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                                let ipage = new allNews({
-                                post_name: health[i].title,
-                                post_url: iurl,
-                                post_summary: health[i].description,
-                                post_content:health[i].content,
-                                post_keyword:'agartala news, tripura news, northeast herald, health news',
-                                meta_description:health[i].description,
-                                post_category:'health',
-                                post_image:health[i].imageName,
-                                meta_tags:'Sport news, ',
-                                post_topic:'',
-                                post_editor:'No',
-                                ne_insight:'No',
-                                author:'IBNS',
-                                update_date:newDate,
-                                ibns_id:health[i].id
-                                });
-                                ipage.save();      
-                            }        
-                        }
-                    }
-                }
-            
+    exports.brNews = async(req, res, next) =>{
+        const {title, keyword} = req.body;        
+        let brurl = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+        console.log(title, keyword, brurl)
+        let breakingnews = new breakingNews({
+            breaking_title:title,
+            breaking_keyword:keyword,
+            breaking_url:brurl,
+            update_date:newDate,
         });
+        breakingnews.save();
+        res.send("Breaking News Uploaded.")
+    }
+
+    exports.listBreaking = async(req, res, next) =>{
+            adminSession=req.session;
+            if(!adminSession.userid){
+                res.redirect('/admin/user/login');
+            }
+            else{
+            const brdata = await breakingNews.find().sort({brnews:-1}).lean();
+            res.render('admin/listbreaking',{
+                layout:'',
+                brdata
+            });
+            }
+    }
+
+    exports.editBreaking = async(req, res) =>{
+        adminSession=req.session;
+        if(!adminSession.userid){
+            res.redirect('/admin/user/login');
+        }
+        else{
+        let pid = req.params.id;
+        const edbreaking = await breakingNews.findOne({brnews_id:pid}).lean();
+        res.render('admin/editbreaking',{
+            layout:'',
+            edbreaking
+        });
+        }
+    }
+
+    exports.updateBreaking = async(req, res) => {
+        const {title, keyword, id} = req.body;
+        let brurl = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+        breakingNews.findByIdAndUpdate(id, 
+            {
+                breaking_title: title,
+                breaking_keyword: keyword,
+                breaking_url: brurl,
+                update_date:newDate,
+            },function(err, data) {
+            if(err){
+                res.send('Something Went Wrong');
+            }
+            else{
+                res.send('Breaking News Update Successfully.');
+            }
+            });
+    }
+
+    exports.breakingPage = async(req, res, next) =>{
+        try{
+            res.render('admin/addbreaking',{
+                layout: '',
+            })
+        }catch{
+
+        }
+    }
+
+    exports.deleteNews = async(req, res, next) =>{
+            let idd = req.params.id;
+            allNews.remove({_id:idd}, 
+            function(err, data) {
+                if(err){
+                    res.send("Cam not Delete");
+                }
+                else{
+                    res.redirect('/admin/user/dashboard');
+                }
+            });  
     }
 
 
 
+
+
     
-       
-        
-
-        
     
-   
-
-    exports.testi = async(req, res) =>{
-        
-            
-            
-            //console.log(dashAllNews.category);
-            //res.send(dashAllNews.post_category);
-
-
-        }
     
     
 

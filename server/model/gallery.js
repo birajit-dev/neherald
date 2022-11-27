@@ -10,15 +10,15 @@ const pageSchema = new mongoose.Schema({
         required: 'Yes'
     },
     gallery_path:{
-        type: String
+        type: Array
     },
-    page_keyword:{
+    gallery_keyword:{
         type:String
     },
-    page_description:{
+    gallery_description:{
         type:String
     },
-    page_url:{
+    gallery_url:{
         type:String
     },
     update_date:{

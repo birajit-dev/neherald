@@ -88,3 +88,8 @@ hbs.handlebars.registerHelper('eachData', function(context, options) {
      return context;
     }
    });
+
+   hbs.handlebars.registerHelper('s3path', function(context, options){
+    var s3bucket = "https://northeastherald.sfo3.digitaloceanspaces.com";
+    return s3bucket;
+   });
