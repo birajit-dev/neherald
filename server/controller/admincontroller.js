@@ -170,7 +170,7 @@ const multerS3 = require('multer-s3');
                     update_date:newDate
                 });
                 upallNews.save();
-                res.send('News Uploaded Successfully.');
+                res.redirect('/admin/user/dashboard');
             }
         });    
     }
@@ -210,7 +210,7 @@ const multerS3 = require('multer-s3');
                 res.send('Something Went Wrong');
             }
             else{
-                res.send('News Update Successfully.');
+                res.redirect('/admin/user/dashboard');
             }
             });
     }
