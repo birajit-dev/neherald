@@ -29,6 +29,7 @@ router.get('/admin/user/addbreaking', adminController.breakingPage);
 router.get('/admin/user/listbreaking', adminController.listBreaking);
 router.get('/admin/user/editbreaking/:id', adminController.editBreaking)
 router.get('/admin/user/addgallery', galleryController.addGallery);
+router.get('/admin/user/gallery', galleryController.listGallery);
 
 //API//
 router.post('/admin/user/authcheck', adminController.authAdmin); //AUTHENTICATION OF ADMIN PANEL LOGIN
@@ -41,6 +42,9 @@ router.post('/admin/user/breaknews', adminController.brNews);
 router.post('/admin/user/updatebreaking', adminController.updateBreaking)
 router.post('/admin/user/gallerypost', galleryController.postGallery);
 router.get('/admin/user/deletenews/:id', adminController.deleteNews);
+router.get('/admin/user/deletegallery/:id', adminController.deleteGallery);
+router.get('/admin/user/deletebreaking/:id', adminController.deleteBreaking);
+
 
 
 

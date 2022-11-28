@@ -120,3 +120,17 @@ const upload = multer({
 
     }
   }
+
+  exports.listGallery = async(req, res) =>{
+            adminSession=req.session;
+            if(!adminSession.userid){
+                res.redirect('/admin/user/login');
+            }
+            else{
+            const gallery = await galleryDb.find().sort({gallery_id:-1}).lean();
+            res.render('admin/listgallery',{
+                layout:'',
+                gallery
+            });
+            }
+  }

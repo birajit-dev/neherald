@@ -34,21 +34,22 @@
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Page Title</th>
-                    <th>Page URL</th>
+                    <th>Gallery Title</th>
+                    <th>Gallery URL</th>
                     <th>Date</th>
-                    <th>Edit</th>
+                    {{!-- <th>Edit</th> --}}
                     <th>Delete</th>
                 </tr>
             </thead>
 
             <tbody>
-                {{#each brdata}}
+                {{#each gallery}}
                 <tr>
-                    <td style="font-weight:700">{{breaking_title}}</td>
+                    <td style="font-weight:700">{{gallery_title}}</td>
+                    <td>{{gallery_url}}</td>
                     <td>{{update_date}}</td>
-                    <td><a href="/admin/user/editbreaking/{{brnews_id}}" class="btn btn-info" style="border-radius:2px;color:black;width:100%;">Edit</a></td>
-                    <td><a href="/admin/user/deletebreaking/{{_id}}" class="btn btn-danger" style="border-radius:2px;color:black;width:100%;">Delete</a></td>
+                    {{!-- <td><a href="/admin/user/editbreaking/{{gallery_id}}" class="btn btn-info" style="border-radius:2px;color:black;width:100%;">Edit</a></td> --}}
+                    <td><a href="/admin/user/deletegallery/{{_id}}" class="btn btn-danger" style="border-radius:2px;color:black;width:100%;">Delete</a></td>
                 </tr>
                 {{/each}}
                 </tbody>

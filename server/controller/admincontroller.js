@@ -5,6 +5,7 @@ const allNews = require('../model/allnews');
 const allPages = require('../model/allpage');
 const adminData =  require('../model/login');
 const breakingNews = require('../model/breakingnews');
+const galleryDb = require('../model/gallery');
 const Ibns = require('../model/ibns');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
@@ -372,6 +373,34 @@ const multerS3 = require('multer-s3');
                 }
             });  
     }
+
+    exports.deleteBreaking = async(req, res, next) =>{
+        let idd = req.params.id;
+            breakingNews.remove({_id:idd}, 
+            function(err, data) {
+                if(err){
+                    res.send("Can not Delete");
+                }
+                else{
+                    res.redirect('/admin/user/listbreaking');
+                }
+            });  
+    }
+
+    exports.deleteGallery = async(req, res, next) =>{
+        let idd = req.params.id;
+            galleryDb.remove({_id:idd}, 
+            function(err, data) {
+                if(err){
+                    res.send("Can not Delete");
+                }
+                else{
+                    res.redirect('/admin/user/dashboard');
+                }
+            });  
+    }
+
+
 
 
 
