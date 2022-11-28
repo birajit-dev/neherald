@@ -83,7 +83,7 @@ const { assert } = require('console');
         exports.categoryPage = async(req, res) => {
             try{
             let catName = req.params.cat;
-            const categoryAll = await allNews.find({post_category:catName}).sort({update_date:1}).lean();
+            const categoryAll = await allNews.find({post_category:catName}).sort({news_id:-1}).lean();
             const recentNewscat = await allNews.find({post_category:{$ne:catName}}).sort({news_id:-1}).lean();
             const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
 

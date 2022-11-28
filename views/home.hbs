@@ -75,7 +75,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/tripura'">
+          <div class="card-title cursor-pointer" style="font-family: 'Droid Serif';" onclick="window.location.href = '/tripura'">
             Tripura News (View All)
           </div>
           {{#each tripuranews}}
@@ -98,7 +98,7 @@
                 <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
               </div>
               <p class="mb-0 a-black">
-                {{{meta_description}}}
+                {{{substr "150" meta_description}}}
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/national'">
+          <div class="card-title cursor-pointer" style="font-family: 'Droid Serif';" onclick="window.location.href = '/national'">
             National News (View All)
           </div>
           {{#each nationalnews}}
@@ -147,7 +147,7 @@
                 <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
               </div>
               <p class="mb-0 a-black">
-                {{{meta_description}}}
+                {{{substr "150" meta_description}}}
               </p>
             </div>
           </div>
