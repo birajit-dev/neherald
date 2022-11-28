@@ -152,7 +152,7 @@ const multerS3 = require('multer-s3');
                 const urlp = "https://northeastherald.sfo3.digitaloceanspaces.com/news/";
                 const aFile = urlp +nFile;
 
-                const {name, url, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author } = req.body;
+                const {name, url, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author} = req.body;
                 let upallNews = new allNews({
                     post_name: name,
                     post_url: url,

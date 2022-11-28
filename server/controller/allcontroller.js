@@ -13,9 +13,6 @@ const { assert } = require('console');
 
 
 
-
-
-
         exports.homePage = async(req, res, next) => {
             try{
                 const topnews = await allNews.find({post_topic:'headlines'}).sort({news_id:-1}).limit('1').lean();
@@ -25,6 +22,8 @@ const { assert } = require('console');
                 const sportnews = await allNews.find({post_category:'sports'}).sort({news_id:-1}).limit('5').lean();
                 const globalnews = await allNews.find({post_category:'global'}).sort({news_id:-1}).limit('10').lean();
                 const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
+
+                const topheadlines = await allNews.find({ne_insight:'yes'}).sort({news_id:-1}).lean();
                 
                 const gallery = await allGallery.find().sort({gallery_id:-1}).limit('1').lean();
                 const skipGallery = await allGallery.find().sort({gallery_id:-1}).skip(1).limit('10').lean();
@@ -44,7 +43,8 @@ const { assert } = require('console');
                     globalnews,
                     bnews,
                     gallery,
-                    skipGallery
+                    skipGallery,
+                    topheadlines
                 });
             }
             catch{
@@ -90,7 +90,7 @@ const { assert } = require('console');
             //const pk = await allKey.findOne({page_category:catName});
             res.render('category',
             {
-                    pageTitle: 'Northeast Herald: Agartala News, Tripura News, Kokborok News, Northeast News',
+                    pageTitle: catName + ': Northeast Herald',
                     pageKeyword: 'neherald, tripura university,northeast herald, tripura news, kokborok news, tripura info',
                     pageDescription: 'Northeast Herald starts its journey from Tripura state capital city Agartala to cover the entire Northeast region of India for the latest news, news photos, and the latest photos to promote the great cultural, historical and traditional identity of the region.',
                     pageUrl: 'https://www.neherald.com/',
@@ -128,6 +128,23 @@ const { assert } = require('console');
                     res.status(500).send({message: error.message || "Error in Category Page"});
                 }
             
+        }
+
+        exports.topNewsPage = async(req, res) =>{
+            const topheadlines = await allNews.find({ne_insight:'yes'}).sort({news_id:-1}).lean();
+            const recentNewscat = await allNews.find().sort({news_id:-1}).lean();
+            const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
+            res.render('topnews',{
+                    pageTitle: 'Tripura Top News : Northeast Herald',
+                    pageKeyword: 'neherald, tripura university,northeast herald, tripura news, kokborok news, tripura info',
+                    pageDescription: 'Northeast Herald starts its journey from Tripura state capital city Agartala to cover the entire Northeast region of India for the latest news, news photos, and the latest photos to promote the great cultural, historical and traditional identity of the region.',
+                    pageUrl: 'https://www.neherald.com/',
+                    imageCard: 'https://www.neherald.com/logo.png',
+                    topheadlines,
+                    recentNewscat,
+                    topheadlines,
+                    bnews
+            })
         }
 
         exports.Error = async(req, res) =>{

@@ -1,0 +1,84 @@
+
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="card" data-aos="fade-up">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="font-weight-600 mb-4" style="text-transform: capitalize;font-family:'Droid Serif'">{{pageCategory}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            
+
+        
+
+
+        
+                    {{#if topheadlines}}
+                        {{#each topheadlines}}
+                            <div class="row">
+                                <div class="col-sm-4 grid-margin">
+                                    <div class="rotate-img">
+                                        <img src="{{post_image}}" alt="{{post_name}}" class="img-fluid"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 grid-margin">
+                                    <a href="/{{post_category}}/{{post_url}}" style="color: black;"><h2 class="font-weight-600 mb-2" style="font-family: 'Droid Serif';">
+                                        {{post_name}}
+                                    </h2></a>
+                                        <p class="fs-13 text-muted mb-0">
+                                            <span class="me-2" style="font-family:'Droid Serif';color:gray;">{{update_date}}</span>
+                                        </p>
+                       
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <h1>Not Found</h1>
+                    {{/if}}
+
+                            
+                      
+                      
+                      
+                      
+                    </div>
+
+                    
+                    <div class="col-lg-4">
+                      
+                      <div class="
+                      ">
+                        <h2 class="text-primary font-weight-600">
+                          Recent News
+                        </h2>
+
+                        {{#each recentNewscat}}
+                        <div class="mb-4">
+                          <div class="rotate-img">
+                            <img
+                              src="{{post_image}}"
+                              alt="banner"
+                              class="img-fluid"
+                            />
+                          </div>
+                          <h3 class="mt-3 font-weight-600">
+                              {{post_name}}                          </h3>
+                          <p class="fs-13 text-muted mb-0">
+                            <span class="me-2">{{update_date}} </span>
+                          </p>
+                        </div>
+                        {{/each}}
+
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
