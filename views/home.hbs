@@ -192,20 +192,18 @@
   </ol>
           <div class="carousel-inner">
             {{#each gallery}}
-            <div class="carousel-item active">
+            <div class="carousel-item active" onclick="window.location.href = '/photo/neh/gallery/{{gallery_url}}'">
               <img src="https://northeastherald.sfo3.digitaloceanspaces.com/{{this.gallery_path.[0]}}" alt="..." style="width:100%; height: 500px;">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>{{gallery_title}}</h5>
-                    <p>...</p>
+                <div class="carousel-caption d-none d-md-block" style="background-color: gray;">
+                  <h2 style="font-family: 'Droid Serif';">{{gallery_title}}</h2>
                 </div>
             </div>
             {{/each}}
             {{#each skipGallery}}
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="window.location.href = '/photo/neh/gallery/{{gallery_url}}'">
               <img src="https://northeastherald.sfo3.digitaloceanspaces.com/{{this.gallery_path.[0]}}" alt="..." style="width:100%;height: 500px;">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>{{gallery_title}}</h5>
-                <p>...</p>
+              <div class="carousel-caption d-none d-md-block" style="background-color: gray;">
+                <h2 style="font-family: 'Droid Serif';">{{gallery_title}}</h2>
               </div>
             </div>
             {{/each}}
