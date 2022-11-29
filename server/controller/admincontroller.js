@@ -38,6 +38,8 @@ const multerS3 = require('multer-s3');
         timeZone: 'Asia/Calcutta'
       });
 
+
+
     // var storage = multer.diskStorage({
     //     destination: function (req, file, cb) {
     //     cb(null, './public/uploads/')

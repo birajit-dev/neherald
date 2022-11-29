@@ -23,6 +23,8 @@ const { assert } = require('console');
                 const globalnews = await allNews.find({post_category:'global'}).sort({news_id:-1}).limit('10').lean();
                 const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
 
+                const spotlight = await allNews.find({post_category:'health'}).sort({news_id:-1}).limit('3').lean();
+
                 const topheadlines = await allNews.find({ne_insight:'yes'}).sort({news_id:-1}).limit('1').lean();
                 
                 const gallery = await allGallery.find().sort({gallery_id:-1}).limit('1').lean();
@@ -44,7 +46,8 @@ const { assert } = require('console');
                     bnews,
                     gallery,
                     skipGallery,
-                    topheadlines
+                    topheadlines,
+                    spotlight
                 });
             }
             catch{
