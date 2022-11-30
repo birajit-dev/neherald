@@ -8,8 +8,8 @@
         <img src="{{post_image}}" alt="{{post_name}}" class="img-fluid" style="opacity: 0.6;" />
           <div class="position-absolute bottom-0 text-light w-100"
             style="background-color: rgba(0, 0, 0, 0.5)">
-            <h1 style="font-family: 'Droid Serif';color:red;font-weight:700;">Top News</h1>
-            <h2 class="mb-2" style="font-family: 'Droid Serif';color:white">
+            <h1 style="color:red;font-weight:700;">Top News</h1>
+            <h2 class="mb-2" style="color:white">
               {{post_name}}
             </h2>
           </div>
@@ -19,7 +19,7 @@
               Top News
             </div>-->
             <h1 class="mb-0"></h1>
-            <h1 class="mb-2" style="font-family: 'Droid Serif';background:gray;">
+            <h1 class="mb-2" style="background:gray;">
               {{post_name}}
             </h1>
             <div class="fs-12">
@@ -70,7 +70,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" style="font-family: 'Droid Serif';" onclick="window.location.href = '/tripura'">
+          <div class="card-title cursor-pointer" style="" onclick="window.location.href = '/tripura'">
             Tripura News (View All)
           </div>
           {{#each tripuranews}}
@@ -86,7 +86,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -119,7 +119,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" style="font-family: 'Droid Serif';" onclick="window.location.href = '/national'">
+          <div class="card-title cursor-pointer" style="" onclick="window.location.href = '/national'">
             National News (View All)
           </div>
           {{#each nationalnews}}
@@ -135,7 +135,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -175,7 +175,7 @@
     <div class="col-sm-12 grid-margin">
         <div class="card">
         <div class="card-body">
-          <div class="card-title" style="font-family: 'Droid Serif';">
+          <div class="card-title" style="">
             Daily News Photo Album
           </div>
 
@@ -190,7 +190,7 @@
             <div class="carousel-item active" onclick="window.location.href = '/photo/neh/gallery/{{gallery_url}}'">
               <img src="https://northeastherald.sfo3.digitaloceanspaces.com/{{this.gallery_path.[0]}}" alt="..." style="width:100%; height: 500px;">
                 <div class="carousel-caption d-none d-md-block" style="background-color: gray;">
-                  <h2 style="font-family: 'Droid Serif';">{{gallery_title}}</h2>
+                  <h2 style="">{{gallery_title}}</h2>
                 </div>
             </div>
             {{/each}}
@@ -198,7 +198,7 @@
             <div class="carousel-item" onclick="window.location.href = '/photo/neh/gallery/{{gallery_url}}'">
               <img src="https://northeastherald.sfo3.digitaloceanspaces.com/{{this.gallery_path.[0]}}" alt="..." style="width:100%;height: 500px;">
               <div class="carousel-caption d-none d-md-block" style="background-color: gray;">
-                <h2 style="font-family: 'Droid Serif';">{{gallery_title}}</h2>
+                <h2 style="">{{gallery_title}}</h2>
               </div>
             </div>
             {{/each}}
@@ -246,7 +246,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -279,7 +279,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/health'" style="font-family: 'Droid Serif';">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/health'" style="">
             Spot Lights (View All)
           </div>
           {{#each spotlight}}
@@ -295,7 +295,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -325,7 +325,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/world'" style="font-family: 'Droid Serif';">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/world'" style="">
             International News (View All)
           </div>
           {{#each globalnews}}
@@ -341,7 +341,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -372,7 +372,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/finance'" style="font-family: 'Droid Serif';">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/finance'" style="">
             Finance (View All)
           </div>
           {{#each finance}}
@@ -388,7 +388,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
@@ -418,7 +418,7 @@
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
         <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/showbiz'" style="font-family: 'Droid Serif';">
+          <div class="card-title cursor-pointer" onclick="window.location.href = '/showbiz'" style="">
             Entertainment (View All)
           </div>
           {{#each entertainment}}
@@ -434,7 +434,7 @@
               </div>
             </div>
             <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="font-family: 'Droid Serif';">
+              <h2 class="mb-2 font-weight-600" style="">
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
