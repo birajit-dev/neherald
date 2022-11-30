@@ -275,50 +275,28 @@
 
 
 
-  <div class="row" data-aos="fade-up">
-    <div class="col-lg-9 stretch-card grid-margin">
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title cursor-pointer" onclick="window.location.href = '/health'" style="">
-            Spot Lights (View All)
-          </div>
-          {{#each spotlight}}
-          <div class="row cursor-pointer" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
-            <div class="col-sm-4 grid-margin">
-              <div class="position-relative">
-                <div class="rotate-img">
-                  <img src="{{post_image}}" alt="thumb" class="img-fluid" />
-                </div>
-                <div class="badge-positioned">
-                  <span class="badge badge-danger font-weight-bold">{{post_category}} News</span>
-                </div>
+ {{!-- Spot Light Section --}}
+<div class="album py-5 bg-light">
+    <div class="container">
+     <h2 onclick="window.location.href = '/health'">Spot Lights (View All)</h2><br>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">  
+        {{#each spotlight}}
+        <div class="col" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-ing card-img-top" src="{{post_image}}">
+            <div class="card-body" style="padding:10px;">
+              <h3 class="card-text">{{substr "60" post_name}}</h3>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{substr "16" update_date}}</small>
               </div>
             </div>
-            <div class="col-sm-8  grid-margin">
-              <h2 class="mb-2 font-weight-600" style="">
-                {{post_name}}
-              </h2>
-              <div class="fs-13 mb-2">
-                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{substr "16" update_date}}
-              </div>
-              <p class="mb-0 a-black">
-                {{{meta_description}}}
-              </p>
-            </div>
           </div>
-          {{/each}}
         </div>
-      </div>
-    </div>
-
-    <div class="col-lg-3 stretch-card grid-margin">
-      <div class="card">
-        <div class="card-body advertisements">
-          <img alt="ads" src="https://dummyimage.com/300x300/c2c0c2/2e2e33.jpg&text=ads+go+here" />
-        </div>
+        {{/each}}
       </div>
     </div>
   </div>
+  {{!-- Spotlight Ends --}}
 
 
   <div class="row" data-aos="fade-up">
