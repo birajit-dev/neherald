@@ -50,7 +50,7 @@
     margin: 0px;
     width:65%;
 ">
-                            <h5 class="pe-3 news-a cursor-pointer" style="color: white;font-family:'Droid Serif'">{{substr "40" post_name}}</h5>
+                            <h5 class="pe-3 news-a cursor-pointer" style="color: white;">{{substr "40" post_name}}</h5>
                               <p style="color: white;margin-top:-8px;">{{substr "25" update_date}}</p>
                             </p>
                           </div>
@@ -90,7 +90,7 @@
                 {{post_name}}
               </h2>
               <div class="fs-13 mb-2">
-                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{update_date}}
+                <span class="me-2" style="text-transform: capitalize;font-family:'Droid Serif'">{{post_category}}</span>{{ substr " 20" update_date}}
               </div>
               <p class="mb-0 a-black">
                 {{{substr "150" meta_description}}}
