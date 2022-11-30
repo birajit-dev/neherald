@@ -53,7 +53,8 @@ const { assert } = require('console');
                     skipGallery,
                     topheadlines,
                     spotlight, 
-                    entertainment
+                    entertainment, 
+                    finance
                 });
             }
             catch{
