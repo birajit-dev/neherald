@@ -14,7 +14,7 @@ const { assert } = require('console');
         exports.homePage = async(req, res, next) => {
             try{
                 const topnews = await allNews.find({post_topic:'headlines'}).sort({news_id:-1}).limit('1').lean();
-                const latestnews = await allNews.find({post_topic:{$ne:'headlines'}}).sort({news_id:-1}).limit('3').lean();
+                const latestnews = await allNews.find({post_topic:{$ne:'headlines'}},{post_category:{$ne:'article'}}).sort({news_id:-1}).limit('3').lean();
                 const tripuranews = await allNews.find({post_category:'tripura',ne_insight:{$ne:'yes'}}).sort({news_id:-1}).limit('5').lean();
                 const nationalnews = await allNews.find({post_category:'national'}).sort({news_id:-1}).limit('5').lean();
                 const sportnews = await allNews.find({post_category:'sports'}).sort({news_id:-1}).limit('5').lean();
