@@ -22,7 +22,7 @@ const { assert } = require('console');
                 const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
                 const entertainment = await allNews.find({post_category:'showbiz'}).sort({news_id:-1}).limit('10').lean();
                 const finance = await allNews.find({post_category:'finance'}).sort({news_id:-1}).limit('10').lean();
-
+                const article = await allNews.find({post_category:'article'}).sort({news_id:-1}).limit('4').lean();
                 const spotlight = await allNews.find({post_category:'health'}).sort({news_id:-1}).limit('3').lean();
 
                 const topheadlines = await allNews.find({ne_insight:'yes'}).sort({news_id:-1}).limit('1').lean();
@@ -49,7 +49,8 @@ const { assert } = require('console');
                     topheadlines,
                     spotlight, 
                     entertainment, 
-                    finance
+                    finance,
+                    article
                 });
             }
             catch{

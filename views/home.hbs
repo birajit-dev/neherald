@@ -299,6 +299,27 @@
   {{!-- Spotlight Ends --}}
 
 
+{{!-- Aricle --}}
+  <div class="row" data-aos="fade-up" style="background:white;margin-left:2px;margin-right:2px;">
+    <h2 onclick="window.location.href = '/article'">Article / Opinon</h2>
+             
+    {{#each article}}
+    <div class="col-md-6" style="margin-top: 10px;" onclick="window.location.href = '/{{post_category}}/{{post_url}}'">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+         <div class="col-auto d-lg-block" style="width: 30%;">
+          <img src="{{post_image}}" style="height: 150px;width:100%">
+        </div>
+        <div class="col p-2 d-flex flex-column position-static">
+          <h3 class="mb-0">{{post_name}}</h3>
+          <p class="card-text">{{substr "40" meta_description}}</p>
+          <a href="/{{post_category}}/{{post_url}}" class="stretched-link">Continue reading</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+{{!-- End of Article --}}
+
   <div class="row" data-aos="fade-up">
     <div class="col-lg-9 stretch-card grid-margin">
       <div class="card">
@@ -436,9 +457,6 @@
       </div>
     </div>
   </div>
-
-
-
 
 
 
