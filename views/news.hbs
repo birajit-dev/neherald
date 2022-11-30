@@ -10,11 +10,15 @@
                         <div class="col-lg-8">
                             <h1 class="custom-heading">{{singlenews.post_name}}</h1>
                             {{!-- <h3 style="font-family: 'Droid Serif';color:gray;">{{singlenews.post_summary}}</h3><br> --}}
+                                {{#ifEquals singlenews.post_category "article"}}
+                                <p class="author">By {{singlenews.post_summary}}</b></p>
+                                {{else}}
                                 <p class="author">By {{singlenews.author}} - {{substr "16" singlenews.update_date}}</b></p>
+                                {{/ifEquals}}
                                     <div class="col-lg-12 img">
-                                        <img src="{{singlenews.post_image}}" alt="{{sinlenews.post_name}}"/>
-                                        <p class="author" style="text-transform: capitalize">{{singlenews.post_category}} Report</p>
-                                        <div class="sharethis-inline-share-buttons"></div>
+                                        <img src="{{singlenews.post_image}}" alt="{{sinlenews.post_name}}"/><br>
+                                        {{!-- <p class="author" style="text-transform: capitalize">{{singlenews.post_category}} Report</p> --}}
+                                        <div class="sharethis-inline-share-buttons" style="margin-top:10px;"></div>
                                     </div>
                                     <div class="singlenews" style="text-align: justify;">
                                         {{{singlenews.post_content}}}

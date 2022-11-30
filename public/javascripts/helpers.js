@@ -93,3 +93,7 @@ hbs.handlebars.registerHelper('eachData', function(context, options) {
     var s3bucket = "https://northeastherald.sfo3.digitaloceanspaces.com";
     return s3bucket;
    });
+
+   hbs.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
