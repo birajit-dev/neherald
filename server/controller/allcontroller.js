@@ -33,7 +33,7 @@ const { assert } = require('console');
 
                 res.render('home',
                 {
-                    pageTitle: 'Northeast Herald: Agartala News, Tripura News, Kokborok News, Northeast News',
+                    pageTitle: 'NE Herald: Agartala News, Tripura News, Kokborok News, Northeast News',
                     pageKeyword: 'neherald, tripura university,northeast herald, tripura news, kokborok news, tripura info',
                     pageDescription: 'Northeast Herald starts its journey from Tripura state capital city Agartala to cover the entire Northeast region of India for the latest news, news photos, and the latest photos to promote the great cultural, historical and traditional identity of the region.',
                     pageUrl: 'https://www.neherald.com/',
@@ -97,7 +97,7 @@ const { assert } = require('console');
             //const pk = await allKey.findOne({page_category:catName});
             res.render('category',
             {
-                    pageTitle: catName + ': Northeast Herald',
+                    pageTitle: catName + ': NE Herald',
                     pageKeyword: 'neherald, tripura university,northeast herald, tripura news, kokborok news, tripura info',
                     pageDescription: 'Northeast Herald starts its journey from Tripura state capital city Agartala to cover the entire Northeast region of India for the latest news, news photos, and the latest photos to promote the great cultural, historical and traditional identity of the region.',
                     pageUrl: 'https://www.neherald.com/',
@@ -122,7 +122,7 @@ const { assert } = require('console');
                 //const pk = await allKey.findOne({page_category:catName});
                 res.render('pages',
                 {
-                        pageTitle: pageI.page_title + ' | Northeast Herald',
+                        pageTitle: pageI.page_title + ' | NE Herald',
                         pageKeyword: pageI.page_keyword,
                         pageDescription: pageI.page_description,
                         pageUrl: 'https://www.neherald.com/'+pageI.page_url,
@@ -142,7 +142,7 @@ const { assert } = require('console');
             const recentNewscat = await allNews.find().sort({news_id:-1}).limit('10').lean();
             const bnews = await breakingNews.find().sort({brnews_id:-1}).limit('5').lean();
             res.render('topnews',{
-                    pageTitle: 'Tripura Top News : Northeast Herald',
+                    pageTitle: 'Tripura Top News : NE Herald',
                     pageKeyword: 'neherald, tripura university,northeast herald, tripura news, kokborok news, tripura info',
                     pageDescription: 'Northeast Herald starts its journey from Tripura state capital city Agartala to cover the entire Northeast region of India for the latest news, news photos, and the latest photos to promote the great cultural, historical and traditional identity of the region.',
                     pageUrl: 'https://www.neherald.com/',
