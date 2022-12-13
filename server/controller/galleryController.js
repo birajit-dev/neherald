@@ -14,6 +14,8 @@ const _ = require('lodash');
 const { title } = require('process');
 const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
+var moment = require('moment'); // require
+
 
 
 
@@ -26,9 +28,14 @@ const s3 = new aws.S3({
 });
 
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+};
+
 
 
   exports.postGallery = async(req, res) =>{
+    const ranDom = getRandomInt(9999999999);
     const nDate = moment().format('LTS');
     const upload = multer({
         storage: multerS3({
@@ -37,7 +44,8 @@ const s3 = new aws.S3({
           acl: 'public-read',
           key: function (request, file, cb) {
             console.log(file);
-            cb(null,'gallery/'+ file.originalname);
+            cb(null,'gallery/'+ ranDom + file.originalname);
+            console.log('Fiel Original:', file.originalname);
           }
         })
     }).array('myFile', 10);
