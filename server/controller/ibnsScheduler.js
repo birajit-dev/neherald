@@ -30,11 +30,10 @@ const breakingnews = require('../model/breakingnews');
     // const options = {  year: 'numeric', month: 'short', day: 'numeric' };
     // const newDate = event.toString('en-US', options);
 
-    const newDate = new Date().toString('en-US', {
-        timeZone: 'Asia/Calcutta'
-      });
 
     exports.sports = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -78,6 +77,8 @@ const breakingnews = require('../model/breakingnews');
         }
 
     exports.news = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -122,6 +123,8 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.finance = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -166,6 +169,8 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.showbiz = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -210,6 +215,8 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.life = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -254,6 +261,8 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.world = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
@@ -298,6 +307,8 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.health = async(req, res) =>{
+        const newDate = moment().format('LTS');
+
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };

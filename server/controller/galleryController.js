@@ -16,9 +16,7 @@ const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
 
 
-const newDate = new Date().toString('en-US', {
-    timeZone: 'Asia/Calcutta'
-  });
+
 
 const spacesEndpoint = new aws.Endpoint('sfo3.digitaloceanspaces.com');
 const s3 = new aws.S3({
@@ -27,20 +25,23 @@ const s3 = new aws.S3({
   secretAccessKey:'SQyXsV6kK6GsQHEUlFTCjfQ2LyKmSnAiPqAn4MAmMrc'
 });
 
-const upload = multer({
-    storage: multerS3({
-      s3: s3,
-      bucket: 'northeastherald',
-      acl: 'public-read',
-      key: function (request, file, cb) {
-        console.log(file);
-        cb(null,'gallery/'+ file.originalname);
-      }
-    })
-  }).array('myFile', 10);
+
 
 
   exports.postGallery = async(req, res) =>{
+    const nDate = moment().format('LTS');
+    const upload = multer({
+        storage: multerS3({
+          s3: s3,
+          bucket: 'northeastherald',
+          acl: 'public-read',
+          key: function (request, file, cb) {
+            console.log(file);
+            cb(null,'gallery/'+ file.originalname);
+          }
+        })
+    }).array('myFile', 10);
+
     upload(req, res, (error) => {
         console.log('files', req.files);
         if (error) {
@@ -77,7 +78,7 @@ const upload = multer({
                     gallery_description: description,
                     gallery_path: images,
                     gallery_url: gurl,
-                    update_date: newDate
+                    update_date: nDate
                 });
                 inse.save();
                 // Save the file name into database

@@ -21,22 +21,30 @@ const { title } = require('process');
 const breakingnews = require('../model/breakingnews');
 const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
+var moment = require('moment'); // require
 
+const newDate = moment().format('LTS');
+
+
+    const spacesEndpoint = new aws.Endpoint('sfo3.digitaloceanspaces.com');
+    const s3 = new aws.S3({
+        endpoint: spacesEndpoint,
+        accessKeyId:'DO00YCW72DZT2Q6WMMFF',
+        secretAccessKey:'SQyXsV6kK6GsQHEUlFTCjfQ2LyKmSnAiPqAn4MAmMrc'
+    });
 
 
     //Random Function
     function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     };
-    const ranDom = getRandomInt(9999);
 
     // const event = new Date();
     // const options = {  year: 'numeric', month: 'short', day: 'numeric' };
     // const newDate = event.toString('en-US', options);
 
-    const newDate = new Date().toString('en-US', {
-        timeZone: 'Asia/Calcutta'
-      });
+
+    
 
 
 
@@ -53,25 +61,10 @@ const multerS3 = require('multer-s3');
     //     storage: storage }).single('myFile');
 
 
-    const spacesEndpoint = new aws.Endpoint('sfo3.digitaloceanspaces.com');
-    const s3 = new aws.S3({
-        endpoint: spacesEndpoint,
-        accessKeyId:'DO00YCW72DZT2Q6WMMFF',
-        secretAccessKey:'SQyXsV6kK6GsQHEUlFTCjfQ2LyKmSnAiPqAn4MAmMrc'
-    });
+
     
     // Change bucket property to your Space name
-    const upload = multer({
-        storage: multerS3({
-        s3: s3,
-        bucket: 'northeastherald',
-        acl: 'public-read',
-        key: function (request, file, cb) {
-            console.log(file);
-            cb(null,'news/'+ranDom + file.originalname);
-        }
-        })
-    }).single('myFile', 1);
+ 
       
 
     exports.adminLogin = async(req, res) => {
@@ -144,6 +137,19 @@ const multerS3 = require('multer-s3');
     }
 
     exports.postNews = async(req, res)=>{
+        const ranDom = getRandomInt(999999);
+        const upload = multer({ 
+            storage: multerS3({
+            s3: s3,
+            bucket: 'northeastherald',
+            acl: 'public-read',
+            key: function (request, file, cb) {
+                console.log(file);
+                cb(null,'news/'+ranDom + file.originalname);
+            }
+            })
+        }).single('myFile', 1);
+
         upload(req, res, function(err){
             if(err){
                 res.send('Something Went Wrong');
@@ -153,11 +159,12 @@ const multerS3 = require('multer-s3');
                 const nFile = ranDom +filex;
                 const urlp = "https://northeastherald.sfo3.digitaloceanspaces.com/news/";
                 const aFile = urlp +nFile;
-
-                const {name, url, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author} = req.body;
+                const nDate = moment().format('LTS');
+                const {name, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author} = req.body;
+                const purl = name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
                 let upallNews = new allNews({
                     post_name: name,
-                    post_url: url,
+                    post_url: purl,
                     post_summary: summary,
                     post_content:mytextarea,
                     post_keyword:keyword,
@@ -169,8 +176,9 @@ const multerS3 = require('multer-s3');
                     post_editor:editor,
                     ne_insight:insight,
                     author:author,
-                    update_date:newDate
+                    update_date:nDate
                 });
+                
                 upallNews.save();
                 res.redirect('/admin/user/dashboard');
             }
@@ -193,10 +201,9 @@ const multerS3 = require('multer-s3');
     }
 
     exports.updateNews = async(req, res)=>{
-        const {id, name, url, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author } = req.body;
+        const {id, name, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author } = req.body;
         allNews.findByIdAndUpdate(id, 
             {   post_name: name,
-                post_url: url,
                 post_summary: summary,
                 post_content:mytextarea,
                 post_keyword:keyword,
