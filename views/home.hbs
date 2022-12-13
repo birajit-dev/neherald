@@ -1,13 +1,21 @@
-<div class="container">
+<div class="container" style="padding-left: 5px; padding-right:5px;">
 
 
   <div class="row" data-aos="fade-up">
     <div class="col-xl-8 stretch-card grid-margin">
       {{#each topheadlines}}
       <div class="position-relative" onclick="window.location.href = '/topnews/headlines/tripura'" style="width: 100%;">
-        <img src="{{post_image}}" alt="{{post_name}}" class="img-fluid" style="opacity: 0.6;width:100%" />
-          <div class="position-absolute bottom-0 text-light w-100"
-            style="background-color: rgba(0, 0, 0, 0.5)">
+      
+        <div style="background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(5, 4, 5, 0.73)),url('{{post_image}}');width:100%;height:380px;">
+            <h1 style="color:red;font-weight:700;display:none">Top News</h1>
+            <h2 class="mb-2" style="color:white;display:none">
+              {{post_name}}
+            </h2>
+        </div>
+
+
+
+          <div class="position-absolute bottom-0 text-light w-100">
             <h1 style="color:red;font-weight:700;">Top News</h1>
             <h2 class="mb-2" style="color:white">
               {{post_name}}
@@ -30,6 +38,12 @@
       </div>
       {{/each}}
     </div>
+
+
+
+
+
+
 
      <div class="col-xl-4 stretch-card grid-margin">
       <div class="card bg-dark text-white">
