@@ -1,3 +1,57 @@
+/* Media Query for Inside News Page */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .newsheading {
+        font-size: 16px;
+        text-align: left !important;
+        font-weight: 600;
+        font-family: 'Droid Serif';
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .newsheading {
+        font-size: 16px;
+        text-align: left !important;
+        font-weight: 600;
+        font-family: 'Droid Serif';
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .newsheading {
+        font-size: 20px;
+        text-align: left !important;
+        font-weight: 600;
+        font-family: 'Droid Serif';
+    }
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .newsheading {
+        font-size: 20px;
+        text-align: left !important;
+        font-weight: 600;
+        font-family: 'Droid Serif';
+    }
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .newsheading {
+        font-size: 20px;
+        text-align: left !important;
+        font-weight: 600;
+        font-family: 'Droid Serif';
+    }
+    }
+
+/* End of Media Query */
+
+
 .singlenews{
     font-family: 'Droid Serif';
     font-size: 22px;
@@ -12,6 +66,8 @@
     font-family: 'Droid Serif';
     font-size: 14px;
 }
+
+
 
 
 
