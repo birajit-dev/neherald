@@ -18,6 +18,8 @@ const _ = require('lodash');
 const allnews = require('../model/allnews');
 const { title } = require('process');
 const breakingnews = require('../model/breakingnews');
+var moment = require('moment'); // require
+
 
 
     //Random Function
@@ -33,7 +35,6 @@ const breakingnews = require('../model/breakingnews');
 
     exports.sports = async(req, res) =>{
         const newDate = moment().format('lll');
-
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
         let settings = { method: "Get" };
