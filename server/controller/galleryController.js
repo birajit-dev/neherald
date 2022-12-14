@@ -36,7 +36,7 @@ function getRandomInt(max) {
 
   exports.postGallery = async(req, res) =>{
     const ranDom = getRandomInt(9999999999);
-    const nDate = moment().format('LTS');
+    const nDate = moment().format('lll');
     const upload = multer({
         storage: multerS3({
           s3: s3,

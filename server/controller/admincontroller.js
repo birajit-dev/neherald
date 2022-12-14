@@ -23,7 +23,7 @@ const aws = require('aws-sdk');
 const multerS3 = require('multer-s3');
 var moment = require('moment'); // require
 
-const newDate = moment().format('LTS');
+const newDate = moment().format('lll');
 
 
     const spacesEndpoint = new aws.Endpoint('sfo3.digitaloceanspaces.com');
@@ -159,7 +159,7 @@ const newDate = moment().format('LTS');
                 const nFile = ranDom +filex;
                 const urlp = "https://northeastherald.sfo3.digitaloceanspaces.com/news/";
                 const aFile = urlp +nFile;
-                const nDate = moment().format('LTS');
+                const nDate = moment().format('lll');
                 const {name, summary, mytextarea, keyword, description, category, tags, topics, editor, insight, author} = req.body;
                 const purl = name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
                 let upallNews = new allNews({

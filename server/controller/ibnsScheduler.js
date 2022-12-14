@@ -32,7 +32,7 @@ const breakingnews = require('../model/breakingnews');
 
 
     exports.sports = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -77,7 +77,7 @@ const breakingnews = require('../model/breakingnews');
         }
 
     exports.news = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -123,7 +123,7 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.finance = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -169,7 +169,7 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.showbiz = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -215,7 +215,7 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.life = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -261,7 +261,7 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.world = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
@@ -307,7 +307,7 @@ const breakingnews = require('../model/breakingnews');
     }
 
     exports.health = async(req, res) =>{
-        const newDate = moment().format('LTS');
+        const newDate = moment().format('lll');
 
         let url = "https://www.indiablooms.com/news/feeds.json";
         const dashAllNews = await allNews.find().sort({ibns_id:-1}).lean();
