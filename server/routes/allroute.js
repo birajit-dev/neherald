@@ -5,7 +5,6 @@ const allController = require('../controller/allcontroller');
 const adminController = require('../controller/admincontroller');
 const galleryController = require('../controller/galleryController');
 const ibnsAutomation = require('../controller/ibnsScheduler');
-const seo = require('../controller/seoController');
 const sessions = require('express-session');
 const ibns = require('../model/ibns');
 
