@@ -5,6 +5,7 @@ const allController = require('../controller/allcontroller');
 const adminController = require('../controller/admincontroller');
 const galleryController = require('../controller/galleryController');
 const ibnsAutomation = require('../controller/ibnsScheduler');
+const seo = require('../controller/seoController');
 const sessions = require('express-session');
 const ibns = require('../model/ibns');
 
@@ -57,6 +58,10 @@ router.get('/ibns/automation/category/finance/do', ibnsAutomation.finance);
 router.get('/ibns/automation/category/health/do', ibnsAutomation.health);
 router.get('/ibns/automation/category/life/do', ibnsAutomation.life);
 router.get('/ibns/automation/category/world/do', ibnsAutomation.world);
+
+
+
+//SEO 
 
 
 
