@@ -105,7 +105,8 @@ const { assert } = require('console');
                     pageCategory: catName,
                     categoryAll,
                     recentNewscat,
-                    bnews
+                    bnews,
+                    catName
             });
             }
             catch{
